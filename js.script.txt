@@ -1,0 +1,873 @@
+"use strict";
+
+/* =========================================
+   CONFIGURATION
+========================================= */
+
+const ADMIN_EMAIL = "hrrehman4545555@gmail.com";
+
+/*
+ * Base prices are in Pakistani Rupees.
+ * Update these prices whenever required.
+ */
+
+const websitePrices = {
+    ecommerce: 45000,
+    restaurant: 30000,
+    saas: 60000,
+    portfolio: 15000
+};
+
+const websiteNames = {
+    ecommerce: "E-Commerce Website",
+    restaurant: "Restaurant Website",
+    saas: "SaaS Platform",
+    portfolio: "Personal Portfolio"
+};
+
+const products = {
+    luna: {
+        name: "Luna Noire",
+        category: "E-COMMERCE / LUXURY STORE",
+        description:
+            "A luxury e-commerce website concept designed for premium fashion, accessories, and lifestyle brands. The proposed solution includes product browsing, shopping cart functionality, and an administration interface.",
+
+        image: "assets/ecommerce.jpg",
+        price: 45000,
+
+        features: [
+            "Responsive product catalog",
+            "Shopping cart and checkout UI",
+            "Product search and filtering",
+            "Inventory management interface",
+            "Order management dashboard",
+            "Customer account interface"
+        ],
+
+        technologies: [
+            "HTML5",
+            "CSS3",
+            "JavaScript",
+            "Node.js",
+            "Database"
+        ],
+
+        websiteType: "ecommerce",
+        projectType: "E-Commerce Website"
+    },
+
+    flame: {
+        name: "Flame & Crust",
+        category: "RESTAURANT / FOOD DELIVERY",
+        description:
+            "A restaurant ordering website concept for pizza shops, cafes, and food businesses. Customers can explore the menu, customize items, prepare an order, and send an order summary through WhatsApp.",
+
+        image: "assets/pizza.jpg",
+        price: 30000,
+
+        features: [
+            "Restaurant menu and categories",
+            "Food customization interface",
+            "Shopping cart",
+            "Order summary",
+            "WhatsApp order shortcut",
+            "Restaurant administration interface"
+        ],
+
+        technologies: [
+            "HTML5",
+            "CSS3",
+            "JavaScript",
+            "WhatsApp integration",
+            "Optional backend"
+        ],
+
+        websiteType: "restaurant",
+        projectType: "Restaurant Website"
+    },
+
+    synthetix: {
+        name: "Synthetix AI",
+        category: "SAAS / ANALYTICS PLATFORM",
+        description:
+            "A futuristic SaaS dashboard concept for analytics and software-as-a-service businesses. The proposed product includes analytics visualizations, user roles, API management interfaces, and subscription plan screens.",
+
+        image: "assets/saas.jpg",
+        price: 60000,
+
+        features: [
+            "Analytics dashboard interface",
+            "Charts and statistics",
+            "User role management interface",
+            "API token management interface",
+            "Subscription plan screens",
+            "Extendable backend architecture"
+        ],
+
+        technologies: [
+            "HTML5",
+            "CSS3",
+            "JavaScript",
+            "Node.js",
+            "Database",
+            "REST API"
+        ],
+
+        websiteType: "saas",
+        projectType: "SaaS Platform"
+    }
+};
+
+
+/* =========================================
+   DOM HELPERS
+========================================= */
+
+const $ = (selector, parent = document) =>
+    parent.querySelector(selector);
+
+const $$ = (selector, parent = document) =>
+    Array.from(parent.querySelectorAll(selector));
+
+
+/* =========================================
+   TOAST NOTIFICATIONS
+========================================= */
+
+const toast = $("#toast");
+const toastMessage = $("#toastMessage");
+const toastIcon = $("#toastIcon");
+
+let toastTimer;
+
+function showToast(message, icon = "✓") {
+    if (!toast || !toastMessage || !toastIcon) {
+        return;
+    }
+
+    clearTimeout(toastTimer);
+
+    toastMessage.textContent = message;
+    toastIcon.textContent = icon;
+
+    toast.classList.add("show");
+
+    toastTimer = setTimeout(() => {
+        toast.classList.remove("show");
+    }, 3200);
+}
+
+
+/* =========================================
+   MOBILE NAVIGATION
+========================================= */
+
+const menuToggle = $("#menuToggle");
+const navLinks = $("#navLinks");
+
+function closeNavigation() {
+    if (!menuToggle || !navLinks) {
+        return;
+    }
+
+    navLinks.classList.remove("open");
+
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.setAttribute("aria-label", "Open navigation");
+
+    menuToggle.textContent = "☰";
+}
+
+if (menuToggle && navLinks) {
+    menuToggle.addEventListener("click", () => {
+        const isOpen = navLinks.classList.toggle("open");
+
+        menuToggle.setAttribute(
+            "aria-expanded",
+            String(isOpen)
+        );
+
+        menuToggle.setAttribute(
+            "aria-label",
+            isOpen ? "Close navigation" : "Open navigation"
+        );
+
+        menuToggle.textContent = isOpen ? "×" : "☰";
+    });
+
+    $$("#navLinks a").forEach(link => {
+        link.addEventListener("click", closeNavigation);
+    });
+
+    document.addEventListener("click", event => {
+        if (
+            navLinks.classList.contains("open") &&
+            !navLinks.contains(event.target) &&
+            !menuToggle.contains(event.target)
+        ) {
+            closeNavigation();
+        }
+    });
+
+    window.addEventListener("resize", () => {
+        if (window.innerWidth > 760) {
+            closeNavigation();
+        }
+    });
+}
+
+
+/* =========================================
+   CURRENT YEAR
+========================================= */
+
+const currentYear = $("#currentYear");
+
+if (currentYear) {
+    currentYear.textContent = new Date().getFullYear();
+}
+
+
+/* =========================================
+   COPY TO CLIPBOARD
+========================================= */
+
+async function copyText(text) {
+    /*
+     * Modern clipboard access normally requires HTTPS
+     * or localhost and may require user interaction.
+     */
+
+    try {
+        if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(text);
+            return true;
+        }
+
+        /*
+         * Fallback for older browsers or local files.
+         */
+
+        const textarea = document.createElement("textarea");
+
+        textarea.value = text;
+        textarea.setAttribute("readonly", "");
+
+        textarea.style.position = "fixed";
+        textarea.style.opacity = "0";
+        textarea.style.pointerEvents = "none";
+
+        document.body.appendChild(textarea);
+
+        textarea.select();
+
+        const copied = document.execCommand("copy");
+
+        textarea.remove();
+
+        return copied;
+
+    } catch (error) {
+        console.error("Clipboard error:", error);
+
+        return false;
+    }
+}
+
+async function handleCopyEmail() {
+    const copied = await copyText(ADMIN_EMAIL);
+
+    if (copied) {
+        showToast("Email address copied successfully!");
+    } else {
+        showToast(
+            "Copy failed. Email: " + ADMIN_EMAIL,
+            "!"
+        );
+    }
+}
+
+const copyEmailButton = $("#copyEmail");
+const contactCopyEmailButton = $("#contactCopyEmail");
+
+if (copyEmailButton) {
+    copyEmailButton.addEventListener("click", handleCopyEmail);
+}
+
+if (contactCopyEmailButton) {
+    contactCopyEmailButton.addEventListener(
+        "click",
+        handleCopyEmail
+    );
+}
+
+
+/* =========================================
+   MARKETPLACE FILTERS
+========================================= */
+
+const filterButtons = $$(".filter-btn");
+const productCards = $$(".product-card");
+const productCount = $("#productCount");
+
+function filterProducts(category) {
+    let visibleCount = 0;
+
+    productCards.forEach(card => {
+        const matches =
+            category === "all" ||
+            card.dataset.category === category;
+
+        card.hidden = !matches;
+
+        if (matches) {
+            visibleCount++;
+        }
+    });
+
+    if (productCount) {
+        productCount.textContent =
+            `${visibleCount} product${visibleCount === 1 ? "" : "s"}`;
+    }
+}
+
+filterButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        filterButtons.forEach(item => {
+            item.classList.remove("active");
+        });
+
+        button.classList.add("active");
+
+        filterProducts(button.dataset.filter);
+    });
+});
+
+
+/* =========================================
+   WEBSITE PREVIEW MODAL
+========================================= */
+
+const previewModal = $("#previewModal");
+const closeModalButton = $("#closeModal");
+
+const modalImage = $("#modalImage");
+const modalCategory = $("#modalCategory");
+const modalTitle = $("#modalTitle");
+const modalDescription = $("#modalDescription");
+const modalFeatures = $("#modalFeatures");
+const modalTech = $("#modalTech");
+const modalPrice = $("#modalPrice");
+const modalOrderButton = $("#modalOrder");
+
+let currentProductId = null;
+let previousFocusedElement = null;
+
+function formatPrice(amount) {
+    return new Intl.NumberFormat("en-PK", {
+        maximumFractionDigits: 0
+    }).format(amount);
+}
+
+function openPreview(productId) {
+    const product = products[productId];
+
+    if (!product || !previewModal) {
+        showToast("Website preview is unavailable.", "!");
+        return;
+    }
+
+    currentProductId = productId;
+    previousFocusedElement = document.activeElement;
+
+    modalImage.src = product.image;
+    modalImage.alt = product.name + " website preview";
+
+    modalCategory.textContent = product.category;
+    modalTitle.textContent = product.name;
+    modalDescription.textContent = product.description;
+
+    modalPrice.textContent =
+        "PKR " + formatPrice(product.price);
+
+    modalFeatures.replaceChildren();
+
+    product.features.forEach(feature => {
+        const item = document.createElement("li");
+
+        item.textContent = feature;
+
+        modalFeatures.appendChild(item);
+    });
+
+    modalTech.replaceChildren();
+
+    product.technologies.forEach(technology => {
+        const badge = document.createElement("span");
+
+        badge.textContent = technology;
+
+        modalTech.appendChild(badge);
+    });
+
+    /*
+     * Use a fallback if the preview image is missing.
+     */
+
+    modalImage.onerror = () => {
+        modalImage.style.visibility = "hidden";
+        showToast("Add the product image to the assets folder.", "!");
+    };
+
+    modalImage.onload = () => {
+        modalImage.style.visibility = "visible";
+    };
+
+    previewModal.classList.add("open");
+
+    previewModal.setAttribute("aria-hidden", "false");
+
+    document.body.classList.add("modal-open");
+
+    closeModalButton?.focus();
+}
+
+function closePreview() {
+    if (!previewModal) {
+        return;
+    }
+
+    previewModal.classList.remove("open");
+
+    previewModal.setAttribute("aria-hidden", "true");
+
+    document.body.classList.remove("modal-open");
+
+    if (previousFocusedElement) {
+        previousFocusedElement.focus();
+    }
+}
+
+$$("[data-preview]").forEach(button => {
+    button.addEventListener("click", () => {
+        openPreview(button.dataset.preview);
+    });
+});
+
+if (closeModalButton) {
+    closeModalButton.addEventListener("click", closePreview);
+}
+
+$$("[data-close-modal]").forEach(element => {
+    element.addEventListener("click", closePreview);
+});
+
+document.addEventListener("keydown", event => {
+    if (event.key === "Escape" && previewModal?.classList.contains("open")) {
+        closePreview();
+    }
+});
+
+
+/* =========================================
+   PROJECT COST CALCULATOR
+========================================= */
+
+const websiteTypeInputs = $$('input[name="websiteType"]');
+const addonCheckboxes = $$(".addon-checkbox");
+
+const selectedWebsite = $("#selectedWebsite");
+const totalPriceElement = $("#totalPrice");
+const basePriceElement = $("#basePrice");
+const addonsPriceElement = $("#addonsPrice");
+
+const configureOrderButton = $("#configureOrder");
+
+function getSelectedWebsiteType() {
+    const selected = websiteTypeInputs.find(input => input.checked);
+
+    return selected ? selected.value : "ecommerce";
+}
+
+function getSelectedAddons() {
+    return addonCheckboxes
+        .filter(input => input.checked)
+        .map(input => ({
+            name: input.dataset.name,
+            price: Number(input.value) || 0
+        }));
+}
+
+function calculateProjectPrice() {
+    const websiteType = getSelectedWebsiteType();
+
+    const basePrice = websitePrices[websiteType] || 0;
+
+    const selectedAddons = getSelectedAddons();
+
+    const addonTotal = selectedAddons.reduce(
+        (total, addon) => total + addon.price,
+        0
+    );
+
+    const total = basePrice + addonTotal;
+
+    if (selectedWebsite) {
+        selectedWebsite.textContent =
+            websiteNames[websiteType] || "Website";
+    }
+
+    if (totalPriceElement) {
+        totalPriceElement.textContent = formatPrice(total);
+    }
+
+    if (basePriceElement) {
+        basePriceElement.textContent =
+            "PKR " + formatPrice(basePrice);
+    }
+
+    if (addonsPriceElement) {
+        addonsPriceElement.textContent =
+            "PKR " + formatPrice(addonTotal);
+    }
+
+    return {
+        websiteType,
+        websiteName: websiteNames[websiteType],
+        basePrice,
+        selectedAddons,
+        addonTotal,
+        total
+    };
+}
+
+websiteTypeInputs.forEach(input => {
+    input.addEventListener("change", calculateProjectPrice);
+});
+
+addonCheckboxes.forEach(input => {
+    input.addEventListener("change", calculateProjectPrice);
+});
+
+
+/* =========================================
+   CONTACT FORM CONFIGURATION
+========================================= */
+
+const contactForm = $("#contactForm");
+
+const projectTypeInput = $("#projectType");
+const budgetInput = $("#budget");
+const messageInput = $("#message");
+
+const nameInput = $("#name");
+const emailInput = $("#email");
+
+const submitButton = $("#submitButton");
+
+function populateContactForm(configuration) {
+    if (!contactForm) {
+        return;
+    }
+
+    const {
+        websiteName,
+        websiteType,
+        selectedAddons,
+        total
+    } = configuration;
+
+    const product = products[websiteType];
+
+    const orderMessage = [
+        "Hello Hafeez,",
+        "",
+        "I would like to discuss a website project.",
+        "",
+        "Website Type: " + websiteName,
+        "Estimated Price: PKR " + formatPrice(total),
+        "",
+        "Selected Features:",
+        ...(selectedAddons.length
+            ? selectedAddons.map(addon => {
+                return `- ${addon.name}: PKR ${formatPrice(addon.price)}`;
+            })
+            : ["- No additional features selected"]),
+        "",
+        "Please contact me to discuss the requirements, timeline,",
+        "and final quotation."
+    ].join("\n");
+
+    if (projectTypeInput) {
+        projectTypeInput.value =
+            product?.projectType || websiteName;
+    }
+
+    if (messageInput) {
+        messageInput.value = orderMessage;
+    }
+
+    if (budgetInput) {
+        if (total < 20000) {
+            budgetInput.value = "Under PKR 20,000";
+        } else if (total <= 50000) {
+            budgetInput.value = "PKR 20,000–50,000";
+        } else if (total <= 100000) {
+            budgetInput.value = "PKR 50,000–100,000";
+        } else {
+            budgetInput.value = "Above PKR 100,000";
+        }
+    }
+
+    $("#contact")?.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+
+    setTimeout(() => {
+        nameInput?.focus({
+            preventScroll: true
+        });
+    }, 450);
+
+    showToast("Project configuration added to the contact form!");
+}
+
+if (configureOrderButton) {
+    configureOrderButton.addEventListener("click", () => {
+        const configuration = calculateProjectPrice();
+
+        populateContactForm(configuration);
+    });
+}
+
+
+/* =========================================
+   ORDER WEBSITE FROM MARKETPLACE
+========================================= */
+
+function prepareProductOrder(productId) {
+    const product = products[productId];
+
+    if (!product) {
+        showToast("Product could not be found.", "!");
+        return;
+    }
+
+    const configuration = {
+        websiteType: product.websiteType,
+        websiteName: websiteNames[product.websiteType],
+        selectedAddons: [],
+        total: product.price
+    };
+
+    populateContactForm(configuration);
+}
+
+$$("[data-order]").forEach(button => {
+    button.addEventListener("click", () => {
+        prepareProductOrder(button.dataset.order);
+    });
+});
+
+
+/* =========================================
+   ORDER FROM PREVIEW MODAL
+========================================= */
+
+if (modalOrderButton) {
+    modalOrderButton.addEventListener("click", () => {
+        if (!currentProductId) {
+            return;
+        }
+
+        const productId = currentProductId;
+
+        closePreview();
+
+        prepareProductOrder(productId);
+    });
+}
+
+
+/* =========================================
+   CONTACT FORM VALIDATION
+========================================= */
+
+function validateContactForm() {
+    if (!contactForm) {
+        return false;
+    }
+
+    const name = nameInput.value.trim();
+    const email = emailInput.value.trim();
+    const projectType = projectTypeInput.value;
+    const message = messageInput.value.trim();
+
+    if (name.length < 2) {
+        showToast("Please enter your name.", "!");
+        nameInput.focus();
+        return false;
+    }
+
+    if (name.length > 100) {
+        showToast("Your name is too long.", "!");
+        nameInput.focus();
+        return false;
+    }
+
+    /*
+     * This is basic browser-side validation.
+     * The email is also checked using type="email".
+     */
+
+    if (!emailInput.checkValidity()) {
+        showToast("Please enter a valid email address.", "!");
+        emailInput.focus();
+        return false;
+    }
+
+    if (!projectType) {
+        showToast("Please select a project type.", "!");
+        projectTypeInput.focus();
+        return false;
+    }
+
+    if (message.length < 10) {
+        showToast("Please provide more project details.", "!");
+        messageInput.focus();
+        return false;
+    }
+
+    if (message.length > 5000) {
+        showToast("Your message is too long.", "!");
+        messageInput.focus();
+        return false;
+    }
+
+    return true;
+}
+
+
+/* =========================================
+   CONTACT FORM EMAIL GENERATION
+========================================= */
+
+/*
+ * IMPORTANT:
+ *
+ * This frontend generates an email using mailto:.
+ * It does not directly send an email or store inquiries
+ * in a database.
+ *
+ * The visitor must press Send in their email application.
+ */
+
+if (contactForm) {
+    contactForm.addEventListener("submit", event => {
+        event.preventDefault();
+
+        if (!validateContactForm()) {
+            return;
+        }
+
+        const name = nameInput.value.trim();
+        const customerEmail = emailInput.value.trim();
+
+        const projectType = projectTypeInput.value;
+        const budget = budgetInput.value || "Not specified";
+
+        const message = messageInput.value.trim();
+
+        const subject =
+            `Website Inquiry: ${projectType} - ${name}`;
+
+        const body = [
+            "Hello Hafeez Rehman,",
+            "",
+            "You have received a website project inquiry.",
+            "",
+            "CUSTOMER DETAILS",
+            "----------------",
+            `Name: ${name}`,
+            `Customer Email: ${customerEmail}`,
+            `Project Type: ${projectType}`,
+            `Estimated Budget: ${budget}`,
+            "",
+            "PROJECT DETAILS",
+            "----------------",
+            message,
+            "",
+            "----------------",
+            "Sent through the HafeezDev portfolio website."
+        ].join("\n");
+
+        const mailtoUrl =
+            `mailto:${ADMIN_EMAIL}` +
+            `?subject=${encodeURIComponent(subject)}` +
+            `&body=${encodeURIComponent(body)}`;
+
+        showToast(
+            "Opening your email application. Press Send to deliver the inquiry."
+        );
+
+        /*
+         * Open the visitor's configured email handler.
+         */
+
+        window.location.href = mailtoUrl;
+    });
+}
+
+
+/* =========================================
+   ACTIVE NAVIGATION INDICATOR
+========================================= */
+
+const sections = $$(
+    "main section[id]"
+);
+
+const navigationLinks = $$(".nav-links a[href^='#']");
+
+if ("IntersectionObserver" in window) {
+    const sectionObserver = new IntersectionObserver(
+        entries => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                }
+
+                const sectionId = entry.target.id;
+
+                navigationLinks.forEach(link => {
+                    const isActive =
+                        link.getAttribute("href") === `#${sectionId}`;
+
+                    link.classList.toggle("active", isActive);
+                });
+            });
+        },
+        {
+            rootMargin: "-25% 0px -60% 0px",
+            threshold: 0
+        }
+    );
+
+    sections.forEach(section => {
+        sectionObserver.observe(section);
+    });
+}
+
+
+/* =========================================
+   INITIALIZE
+========================================= */
+
+calculateProjectPrice();
+
+filterProducts("all");
+
+console.log(
+    "HafeezDev website initialized successfully."
+);

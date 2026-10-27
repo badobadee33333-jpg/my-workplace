@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Hafeez Rehman | Full Stack Software Engineer</title>
+
+    <meta name="description"
+          content="Explore Hafeez Rehman's software engineering portfolio, ready-to-buy websites, custom web development services, and project cost calculator.">
+
+    <meta name="author" content="Hafeez Rehman">
+    <meta name="theme-color" content="#080b14">
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <!-- Background effects -->
+    <div class="background-effects">
+        <div class="glow glow-one"></div>
+        <div class="glow glow-two"></div>
+    </div>
+
+    <!-- Navigation -->
+    <header class="header">
+        <nav class="navbar container">
+
+            <a href="#home" class="logo">
+                <span class="logo-icon">&lt;/&gt;</span>
+                <span>Hafeez<span class="accent">Dev</span></span>
+            </a>
+
+            <button class="menu-toggle"
+                    id="menuToggle"
+                    aria-label="Open navigation"
+                    aria-expanded="false">
+                ☰
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#home">Home</a>
+                <a href="#marketplace">Marketplace</a>
+                <a href="#skills">Expertise</a>
+                <a href="#education">Education</a>
+                <a href="#calculator">Pricing</a>
+                <a href="#contact" class="nav-contact">Hire Me ↗</a>
+            </div>
+
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- HERO SECTION -->
+        <section class="hero section" id="home">
+            <div class="container hero-grid">
+
+                <div class="hero-content">
+
+                    <div class="availability">
+                        <span class="status-dot"></span>
+                        Available for Projects
+                    </div>
+
+                    <p class="eyebrow">FULL STACK SOFTWARE ENGINEER</p>
+
+                    <h1>
+                        Building Digital
+                        <span class="gradient-text">Experiences</span>
+                        That Matter.
+                    </h1>
+
+                    <p class="hero-description">
+                        I'm <strong>Hafeez Rehman</strong>, a software engineer
+                        passionate about creating modern websites, powerful
+                        web applications, and digital products that help
+                        businesses grow.
+                    </p>
+
+                    <div class="hero-badges">
+                        <span>⚡ Full Stack Development</span>
+                        <span>🎓 KUST Software Engineering</span>
+                        <span>🚀 Web Solutions</span>
+                    </div>
+
+                    <div class="hero-actions">
+                        <a href="#marketplace" class="btn btn-primary">
+                            Explore Websites <span>↗</span>
+                        </a>
+
+                        <a href="#contact" class="btn btn-outline">
+                            Let's Talk
+                        </a>
+                    </div>
+
+                    <div class="email-pill">
+                        <span class="email-icon">✉</span>
+
+                        <span id="emailText">
+                            hrrehman4545555@gmail.com
+                        </span>
+
+                        <button id="copyEmail"
+                                type="button"
+                                aria-label="Copy email address">
+                            Copy
+                        </button>
+                    </div>
+
+                </div>
+
+                <div class="hero-visual">
+
+                    <div class="orbit orbit-one"></div>
+                    <div class="orbit orbit-two"></div>
+
+                    <div class="floating-tag tag-top">
+                        <span class="tag-dot"></span>
+                        Clean Code
+                    </div>
+
+                    <div class="profile-frame">
+
+                        <div class="profile-top">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+
+                            <p>developer.profile</p>
+                        </div>
+
+                        <div class="profile-image-wrapper">
+                            <img
+                                src="assets/profile.jpg"
+                                alt="Hafeez Rehman software engineer portrait"
+                                class="profile-image"
+                                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+                            >
+
+                            <div class="profile-fallback">
+                                <span>&lt;/&gt;</span>
+                                <strong>HAFEEZ</strong>
+                                <small>SOFTWARE ENGINEER</small>
+                            </div>
+
+                            <div class="image-overlay"></div>
+                        </div>
+
+                        <div class="profile-caption">
+                            <div>
+                                <h3>Hafeez Rehman</h3>
+                                <p>Full Stack Software Engineer</p>
+                            </div>
+
+                            <span class="verified-badge">✓</span>
+                        </div>
+
+                    </div>
+
+                    <div class="floating-tag tag-bottom">
+                        <span>⚙</span> Building the Future
+                    </div>
+
+                    <div class="code-float">
+                        <span class="code-purple">const</span>
+                        <span class="code-blue">developer</span>
+                        =
+                        <span class="code-green">"Hafeez"</span>;
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- TECHNOLOGY STRIP -->
+        <section class="tech-strip">
+            <div class="container tech-content">
+                <span>TECHNOLOGIES & EXPERTISE</span>
+                <div class="tech-items">
+                    <span>HTML5</span>
+                    <span>CSS3</span>
+                    <span>JavaScript</span>
+                    <span>Node.js</span>
+                    <span>Databases</span>
+                    <span>REST APIs</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- MARKETPLACE -->
+        <section class="section marketplace" id="marketplace">
+
+            <div class="container">
+
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">DIGITAL PRODUCT STORE</p>
+                        <h2>Websites <span class="gradient-text">For Sale.</span></h2>
+                    </div>
+
+                    <p class="section-description">
+                        Ready-made digital solutions for businesses,
+                        entrepreneurs, and startups.
+                    </p>
+                </div>
+
+                <div class="marketplace-toolbar">
+
+                    <div class="filter-buttons">
+                        <button class="filter-btn active"
+                                data-filter="all">
+                            All Websites
+                        </button>
+
+                        <button class="filter-btn"
+                                data-filter="ecommerce">
+                            E-Commerce
+                        </button>
+
+                        <button class="filter-btn"
+                                data-filter="restaurant">
+                            Restaurant
+                        </button>
+
+                        <button class="filter-btn"
+                                data-filter="saas">
+                            SaaS
+                        </button>
+                    </div>
+
+                    <span class="product-count" id="productCount">
+                        3 products
+                    </span>
+
+                </div>
+
+                <div class="product-grid">
+
+                    <!-- E-commerce -->
+                    <article class="product-card"
+                             data-category="ecommerce"
+                             data-product="luna">
+
+                        <div class="product-image">
+                            <img
+                                src="assets/ecommerce.jpg"
+                                alt="Luna Noire luxury e-commerce website"
+                                loading="lazy"
+                            >
+
+                            <span class="product-label">LUXURY STORE</span>
+
+                            <button class="quick-preview"
+                                    data-preview="luna">
+                                Quick Preview ↗
+                            </button>
+                        </div>
+
+                        <div class="product-body">
+
+                            <div class="product-category">
+                                E-COMMERCE / ONLINE STORE
+                            </div>
+
+                            <h3>Luna Noire</h3>
+
+                            <p>
+                                An elegant online shopping experience
+                                designed for premium fashion and lifestyle brands.
+                            </p>
+
+                            <div class="product-features">
+                                <span>✓ Shopping Cart</span>
+                                <span>✓ Product Catalog</span>
+                                <span>✓ Admin Dashboard</span>
+                            </div>
+
+                            <div class="product-footer">
+                                <div>
+                                    <small>Starting from</small>
+                                    <strong>PKR 45,000</strong>
+                                </div>
+
+                                <button class="btn btn-small btn-primary"
+                                        data-order="luna">
+                                    Order Website ↗
+                                </button>
+                            </div>
+
+                        </div>
+                    </article>
+
+                    <!-- Restaurant -->
+                    <article class="product-card"
+                             data-category="restaurant"
+                             data-product="flame">
+
+                        <div class="product-image">
+                            <img
+                                src="assets/pizza.jpg"
+                                alt="Flame and Crust restaurant website"
+                                loading="lazy"
+                            >
+
+                            <span class="product-label">FOOD & DELIVERY</span>
+
+                            <button class="quick-preview"
+                                    data-preview="flame">
+                                Quick Preview ↗
+                            </button>
+                        </div>
+
+                        <div class="product-body">
+
+                            <div class="product-category">
+                                RESTAURANT / FOOD ORDERING
+                            </div>
+
+                            <h3>Flame & Crust</h3>
+
+                            <p>
+                                A modern restaurant website for pizza,
+                                food ordering, menu customization, and delivery.
+                            </p>
+
+                            <div class="product-features">
+                                <span>✓ Interactive Menu</span>
+                                <span>✓ Shopping Cart</span>
+                                <span>✓ WhatsApp Orders</span>
+                            </div>
+
+                            <div class="product-footer">
+                                <div>
+                                    <small>Starting from</small>
+                                    <strong>PKR 30,000</strong>
+                                </div>
+
+                                <button class="btn btn-small btn-primary"
+                                        data-order="flame">
+                                    Order Website ↗
+                                </button>
+                            </div>
+
+                        </div>
+                    </article>
+
+                    <!-- SaaS -->
+                    <article class="product-card"
+                             data-category="saas"
+                             data-product="synthetix">
+
+                        <div class="product-image">
+                            <img
+                                src="assets/saas.jpg"
+                                alt="Synthetix AI SaaS analytics dashboard"
+                                loading="lazy"
+                            >
+
+                            <span class="product-label">AI / SAAS</span>
+
+                            <button class="quick-preview"
+                                    data-preview="synthetix">
+                                Quick Preview ↗
+                            </button>
+                        </div>
+
+                        <div class="product-body">
+
+                            <div class="product-category">
+                                SAAS / ANALYTICS PLATFORM
+                            </div>
+
+                            <h3>Synthetix AI</h3>
+
+                            <p>
+                                A futuristic software dashboard concept
+                                for analytics, API management, and subscription products.
+                            </p>
+
+                            <div class="product-features">
+                                <span>✓ Analytics Dashboard</span>
+                                <span>✓ User Roles</span>
+                                <span>✓ Subscription UI</span>
+                            </div>
+
+                            <div class="product-footer">
+                                <div>
+                                    <small>Starting from</small>
+                                    <strong>PKR 60,000</strong>
+                                </div>
+
+                                <button class="btn btn-small btn-primary"
+                                        data-order="synthetix">
+                                    Order Website ↗
+                                </button>
+                            </div>
+
+                        </div>
+                    </article>
+
+                </div>
+
+                <div class="marketplace-note">
+                    <span>💡</span>
+                    <p>
+                        Need something different? Request a custom website
+                        tailored to your business requirements.
+                    </p>
+                    <a href="#calculator">Calculate Your Project ↗</a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- EXPERTISE -->
+        <section class="section expertise-section" id="skills">
+
+            <div class="container">
+
+                <div class="section-heading centered">
+                    <p class="eyebrow">WHAT I BRING TO THE TABLE</p>
+                    <h2>Engineering Ideas Into <span class="gradient-text">Reality.</span></h2>
+                    <p class="section-description">
+                        A practical approach to building modern, maintainable,
+                        and user-friendly digital products.
+                    </p>
+                </div>
+
+                <div class="expertise-grid">
+
+                    <article class="expertise-card">
+                        <div class="expertise-icon">⌘</div>
+                        <h3>Software Architecture</h3>
+                        <p>
+                            Structured application design, reusable
+                            components, and maintainable code.
+                        </p>
+                        <span>01 / ARCHITECTURE</span>
+                    </article>
+
+                    <article class="expertise-card">
+                        <div class="expertise-icon">▤</div>
+                        <h3>Database Engineering</h3>
+                        <p>
+                            Data modeling, database design, CRUD operations,
+                            and backend integration.
+                        </p>
+                        <span>02 / DATA</span>
+                    </article>
+
+                    <article class="expertise-card">
+                        <div class="expertise-icon">◈</div>
+                        <h3>Web Engineering</h3>
+                        <p>
+                            Responsive interfaces, interactive experiences,
+                            APIs, and full-stack application development.
+                        </p>
+                        <span>03 / WEB</span>
+                    </article>
+
+                    <article class="expertise-card">
+                        <div class="expertise-icon">✓</div>
+                        <h3>Software Testing</h3>
+                        <p>
+                            Validation, debugging, functional testing,
+                            and continuous improvement.
+                        </p>
+                        <span>04 / QUALITY</span>
+                    </article>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- EDUCATION -->
+        <section class="section education-section" id="education">
+
+            <div class="container education-grid">
+
+                <div class="education-content">
+                    <p class="eyebrow">EDUCATION & FOUNDATION</p>
+
+                    <h2>
+                        Built on Knowledge.
+                        <span class="gradient-text">Driven by Innovation.</span>
+                    </h2>
+
+                    <p>
+                        My software engineering education provides a
+                        foundation for understanding software development,
+                        problem-solving, databases, and system design.
+                    </p>
+
+                    <div class="education-card">
+
+                        <div class="university-icon">🎓</div>
+
+                        <div>
+                            <span class="education-label">DEGREE / PROGRAM</span>
+
+                            <h3>Bachelor of Science in Software Engineering</h3>
+
+                            <p>
+                                Kohat University of Science and Technology
+                                <strong>(KUST)</strong>
+                            </p>
+
+                            <span class="education-status">
+                                Software Engineering
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <p class="education-disclaimer">
+                        Update the degree title or graduation status if
+                        needed to reflect your official academic record.
+                    </p>
+
+                </div>
+
+                <div class="education-visual">
+                    <div class="education-orb">KUST</div>
+
+                    <div class="education-float education-float-one">
+                        <span>01</span>
+                        Software Design
+                    </div>
+
+                    <div class="education-float education-float-two">
+                        <span>02</span>
+                        Problem Solving
+                    </div>
+
+                    <div class="education-float education-float-three">
+                        <span>03</span>
+                        Web Engineering
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- COST CALCULATOR -->
+        <section class="section calculator-section" id="calculator">
+
+            <div class="container">
+
+                <div class="section-heading centered">
+                    <p class="eyebrow">PLAN YOUR NEXT PROJECT</p>
+                    <h2>Build Your <span class="gradient-text">Price Estimate.</span></h2>
+                    <p class="section-description">
+                        Choose a website type and additional features
+                        to calculate an estimated development cost.
+                    </p>
+                </div>
+
+                <div class="calculator-layout">
+
+                    <div class="calculator-form">
+
+                        <div class="form-section">
+                            <h3><span>01</span> Choose Website Type</h3>
+
+                            <div class="website-type-grid">
+
+                                <label class="type-option">
+                                    <input type="radio"
+                                           name="websiteType"
+                                           value="ecommerce"
+                                           checked>
+
+                                    <span class="type-box">
+                                        <span class="type-icon">🛍️</span>
+                                        <strong>E-Commerce</strong>
+                                        <small>PKR 45,000</small>
+                                    </span>
+                                </label>
+
+                                <label class="type-option">
+                                    <input type="radio"
+                                           name="websiteType"
+                                           value="restaurant">
+
+                                    <span class="type-box">
+                                        <span class="type-icon">🍕</span>
+                                        <strong>Restaurant</strong>
+                                        <small>PKR 30,000</small>
+                                    </span>
+                                </label>
+
+                                <label class="type-option">
+                                    <input type="radio"
+                                           name="websiteType"
+                                           value="saas">
+
+                                    <span class="type-box">
+                                        <span class="type-icon">📊</span>
+                                        <strong>SaaS Platform</strong>
+                                        <small>PKR 60,000</small>
+                                    </span>
+                                </label>
+
+                                <label class="type-option">
+                                    <input type="radio"
+                                           name="websiteType"
+                                           value="portfolio">
+
+                                    <span class="type-box">
+                                        <span class="type-icon">💻</span>
+                                        <strong>Portfolio</strong>
+                                        <small>PKR 15,000</small>
+                                    </span>
+                                </label>
+
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3><span>02</span> Add Extra Features</h3>
+
+                            <div class="addon-list">
+
+                                <label class="addon-option">
+                                    <span>
+                                        <strong>Payment Gateway</strong>
+                                        <small>Online payment integration</small>
+                                    </span>
+
+                                    <span class="addon-price">+ PKR 12,000</span>
+
+                                    <input type="checkbox"
+                                           class="addon-checkbox"
+                                           value="12000"
+                                           data-name="Payment Gateway">
+                                </label>
+
+                                <label class="addon-option">
+                                    <span>
+                                        <strong>Admin Dashboard</strong>
+                                        <small>Manage content and records</small>
+                                    </span>
+
+                                    <span class="addon-price">+ PKR 15,000</span>
+
+                                    <input type="checkbox"
+                                           class="addon-checkbox"
+                                           value="15000"
+                                           data-name="Admin Dashboard">
+                                </label>
+
+                                <label class="addon-option">
+                                    <span>
+                                        <strong>SEO & Speed Pack</strong>
+                                        <small>Search optimization and performance</small>
+                                    </span>
+
+                                    <span class="addon-price">+ PKR 8,000</span>
+
+                                    <input type="checkbox"
+                                           class="addon-checkbox"
+                                           value="8000"
+                                           data-name="SEO and Speed Pack">
+                                </label>
+
+                                <label class="addon-option">
+                                    <span>
+                                        <strong>WhatsApp Integration</strong>
+                                        <small>Contact and order shortcuts</small>
+                                    </span>
+
+                                    <span class="addon-price">+ PKR 5,000</span>
+
+                                    <input type="checkbox"
+                                           class="addon-checkbox"
+                                           value="5000"
+                                           data-name="WhatsApp Integration">
+                                </label>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <aside class="estimate-card">
+
+                        <div class="estimate-top">
+                            <span class="estimate-label">PROJECT ESTIMATE</span>
+                            <span class="estimate-icon">↗</span>
+                        </div>
+
+                        <h3 id="selectedWebsite">E-Commerce Website</h3>
+
+                        <p>
+                            Estimated development investment
+                        </p>
+
+                        <div class="estimate-price">
+                            <span>PKR</span>
+                            <strong id="totalPrice">45,000</strong>
+                        </div>
+
+                        <div class="estimate-divider"></div>
+
+                        <div class="estimate-row">
+                            <span>Base Website</span>
+                            <strong id="basePrice">PKR 45,000</strong>
+                        </div>
+
+                        <div class="estimate-row">
+                            <span>Additional Features</span>
+                            <strong id="addonsPrice">PKR 0</strong>
+                        </div>
+
+                        <div class="estimate-disclaimer">
+                            This is an indicative estimate, not a final
+                            quotation. Actual pricing depends on scope,
+                            hosting, third-party services, and requirements.
+                        </div>
+
+                        <button id="configureOrder"
+                                class="btn btn-primary btn-full">
+                            Order With This Configuration ↗
+                        </button>
+
+                        <p class="estimate-footer">
+                            No payment required to send an inquiry.
+                        </p>
+
+                    </aside>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section class="section contact-section" id="contact">
+
+            <div class="container contact-grid">
+
+                <div class="contact-content">
+
+                    <p class="eyebrow">LET'S BUILD SOMETHING</p>
+
+                    <h2>
+                        Have an Idea?
+                        <span class="gradient-text">Let's Make It Real.</span>
+                    </h2>
+
+                    <p>
+                        Tell me about your business, website, or software
+                        project. I'll review your inquiry and discuss
+                        the next steps with you.
+                    </p>
+
+                    <div class="contact-method">
+
+                        <div class="contact-method-icon">✉</div>
+
+                        <div>
+                            <small>EMAIL ADDRESS</small>
+                            <strong>hrrehman4545555@gmail.com</strong>
+                            <button id="contactCopyEmail" class="text-button">
+                                Copy Email
+                            </button>
+                        </div>
+
+                    </div>
+
+                    <div class="contact-method">
+
+                        <div class="contact-method-icon">⌘</div>
+
+                        <div>
+                            <small>WORKING TOGETHER</small>
+                            <strong>Custom Websites & Digital Products</strong>
+                            <p>Share your requirements to get started.</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="contact-card">
+
+                    <div class="contact-card-heading">
+                        <h3>Send a Project Inquiry</h3>
+                        <p>Fill out the details below.</p>
+                    </div>
+
+                    <form id="contactForm">
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+                                <label for="name">Your Name *</label>
+
+                                <input type="text"
+                                       id="name"
+                                       name="name"
+                                       placeholder="Enter your name"
+                                       required
+                                       maxlength="100">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Your Email *</label>
+
+                                <input type="email"
+                                       id="email"
+                                       name="email"
+                                       placeholder="you@example.com"
+                                       required
+                                       maxlength="254">
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="projectType">Project Type *</label>
+
+                            <select id="projectType"
+                                    name="projectType"
+                                    required>
+
+                                <option value="">Select a project</option>
+                                <option value="E-Commerce Website">E-Commerce Website</option>
+                                <option value="Restaurant Website">Restaurant Website</option>
+                                <option value="SaaS Platform">SaaS Platform</option>
+                                <option value="Personal Portfolio">Personal Portfolio</option>
+                                <option value="Custom Web Application">Custom Web Application</option>
+                                <option value="Website Purchase">Website Purchase</option>
+                                <option value="Other">Other</option>
+
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="budget">Estimated Budget</label>
+
+                            <select id="budget" name="budget">
+
+                                <option value="">Select your budget</option>
+                                <option value="Under PKR 20,000">Under PKR 20,000</option>
+                                <option value="PKR 20,000–50,000">PKR 20,000–50,000</option>
+                                <option value="PKR 50,000–100,000">PKR 50,000–100,000</option>
+                                <option value="Above PKR 100,000">Above PKR 100,000</option>
+                                <option value="Discuss budget">Discuss budget</option>
+
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Project Details *</label>
+
+                            <textarea id="message"
+                                      name="message"
+                                      rows="5"
+                                      placeholder="Describe your idea, required features, or questions..."
+                                      required
+                                      maxlength="5000"></textarea>
+                        </div>
+
+                        <button type="submit"
+                                class="btn btn-primary btn-full"
+                                id="submitButton">
+                            Generate Email Inquiry ↗
+                        </button>
+
+                        <p class="form-note">
+                            Your email application will open with your
+                            inquiry prepared for sending.
+                        </p>
+
+                    </form>
+
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+        <div class="container footer-content">
+
+            <a href="#home" class="logo">
+                <span class="logo-icon">&lt;/&gt;</span>
+                <span>Hafeez<span class="accent">Dev</span></span>
+            </a>
+
+            <p>
+                Designing, engineering, and building digital experiences.
+            </p>
+
+            <div class="footer-links">
+                <a href="#marketplace">Marketplace</a>
+                <a href="#education">Education</a>
+                <a href="#contact">Contact</a>
+            </div>
+
+            <span class="copyright">
+                © <span id="currentYear"></span> Hafeez Rehman.
+                All rights reserved.
+            </span>
+
+        </div>
+
+    </footer>
+
+    <!-- WEBSITE PREVIEW MODAL -->
+    <div class="modal" id="previewModal" aria-hidden="true">
+
+        <div class="modal-backdrop" data-close-modal></div>
+
+        <div class="modal-content"
+             role="dialog"
+             aria-modal="true"
+             aria-labelledby="modalTitle">
+
+            <button class="modal-close"
+                    id="closeModal"
+                    aria-label="Close preview">
+                ×
+            </button>
+
+            <div class="modal-image">
+                <img id="modalImage" src="" alt="Website preview">
+            </div>
+
+            <div class="modal-body">
+
+                <span class="eyebrow" id="modalCategory">
+                    WEBSITE PREVIEW
+                </span>
+
+                <h2 id="modalTitle">Website Name</h2>
+
+                <p id="modalDescription"></p>
+
+                <h4>Key Capabilities</h4>
+
+                <ul id="modalFeatures" class="modal-features"></ul>
+
+                <h4>Suggested Technology Stack</h4>
+
+                <div id="modalTech" class="modal-tech"></div>
+
+                <div class="modal-price-row">
+                    <div>
+                        <small>Starting price</small>
+                        <strong id="modalPrice"></strong>
+                    </div>
+
+                    <button class="btn btn-primary"
+                            id="modalOrder">
+                        Order This Website ↗
+                    </button>
+                </div>
+
+                <p class="modal-disclaimer">
+                    Preview details describe the proposed product
+                    capabilities. Confirm functionality, integrations,
+                    delivery scope, and price before purchasing.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast"
+         class="toast"
+         role="status"
+         aria-live="polite">
+        <span id="toastIcon">✓</span>
+        <span id="toastMessage">Done!</span>
+    </div>
+
+</body>
+</html>
